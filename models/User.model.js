@@ -18,7 +18,23 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    profilePhoto: {
+      type: String,
+    },
+    country: {
+      type: String,
+      required: [true, "Country is required."],
+    },
+    language: {
+      type: String,
+      required: [true, "Language is required."],
+    },
+    hobbie: {
+      type: Schema.Types.ObjectId,
+      ref:"hobbie"
+    }
   },
+
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
