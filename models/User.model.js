@@ -31,7 +31,8 @@ const userSchema = new Schema(
     },
     hobbie: {
       type: Schema.Types.ObjectId,
-      ref:"hobbie"
+      ref:"hobbie",
+      required: true,
     }
   },
 

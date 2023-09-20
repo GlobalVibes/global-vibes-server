@@ -1,18 +1,25 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const Post = new Schema({
-    image: String,
+    image: {
+        type: String,
+    },
     description: {
         type: String,
         required: true,
         validate: {
-            max:{
+            max: {
                 args: 500,
-                msg:"Maximum 500 characters allowed in last name"
+                msg: "Maximum 500 characters allowed in last name"
             },
-            min:{
+            min: {
                 args: 1,
-                msg:"Minimum 1 characters required in last name"
+                msg: "Minimum 1 characters required in last name"
+            },
+            hobbie: {
+                type: Schema.Types.ObjectId,
+                ref: "hobbie",
+                required: true,
             }
         }
     }
