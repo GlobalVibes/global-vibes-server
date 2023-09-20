@@ -28,12 +28,7 @@ const userSchema = new Schema(
     language: {
       type: String,
       required: true
-    },
-    hobbie: {
-      type: [Schema.Types.ObjectId],
-      ref:"hobbie"
-     // required: true,
-    }
+    },        
   },
 
   {
