@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 
 // ℹ️ Handles password encryption
 const jwt = require("jsonwebtoken");
-const fileUploader = require('../config/cloudinary.config');
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
 
@@ -17,7 +16,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
-router.post("/signup", fileUploader.single("photo"), (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const { email, password, name, profilePhoto, country, language, hobbie } = req.body;
 
   // Check if email or password or name are provided as empty strings
@@ -58,7 +57,7 @@ router.post("/signup", fileUploader.single("photo"), (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, name, profilePhoto: req.file.path, country, language, hobbie});
+      return User.create({ email, password: hashedPassword, name, profilePhoto, country, language, hobbie});
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object to omit the password
