@@ -10,7 +10,7 @@ router.get("/posts", (req, res, next) =>{
 router.post("/posts", (req, res, next) => {
     const {image, descripiton} = req.body;
     Post.create({image, descripiton})
-        .then(hobby => res.json(hobby))
+        .then(response => res.json(response))
         .catch(e => console.log(e));
 })
 
