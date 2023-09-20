@@ -12,27 +12,27 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true, "Password is required."],
+      required: true,
     },
     name: {
       type: String,
-      required: [true, "Name is required."],
+      required: true
     },
     profilePhoto: {
-      type: String,
+      type: String
     },
     country: {
       type: String,
-      required: [true, "Country is required."],
+      required: true
     },
     language: {
       type: String,
-      required: [true, "Language is required."],
+      required: true
     },
     hobbie: {
       type: Schema.Types.ObjectId,
-      ref:"hobbie",
-      required: true,
+      ref:"hobbie"
+     // required: true,
     }
   },
 

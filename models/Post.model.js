@@ -7,7 +7,7 @@ const Post = new Schema({
     description: {
         type: String,
         required: true,
-        validate: {
+        /*validate: {
             max: {
                 args: 500,
                 msg: "Maximum 500 characters allowed in last name"
@@ -21,7 +21,7 @@ const Post = new Schema({
                 ref: "hobbie",
                 required: true,
             }
-        }
+        }*/
     }
 })
 
