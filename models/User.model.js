@@ -30,7 +30,7 @@ const userSchema = new Schema(
       required: true
     },
     hobbie: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref:"hobbie"
      // required: true,
     }
