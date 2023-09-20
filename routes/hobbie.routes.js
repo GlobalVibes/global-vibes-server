@@ -1,7 +1,5 @@
 const router = require("express").Router(); 
 const mongoose = require("mongoose");
-
-
 const Hobbie = require("../models/Hobbie.model");
 
  router.post("/hobbies", (req, res, next) => {
