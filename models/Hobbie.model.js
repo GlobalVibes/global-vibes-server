@@ -1,21 +1,21 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
-  {
-    title: {
-      type: String,
-      required: [true, "Title is required."],
-      unique: true,      
+    {
+        title: {
+            type: String,
+            required: [true, "Title is required."],
+            unique: true,
+        },
+        description: {
+            type: String,
+            required: [true, "Description is required."],
+        },
     },
-    description: {
-      type: String,
-      required: [true, "Description is required."],
-    },    
-  },
 
-  {   
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
 
 const Hobbie = model("Hobbie", userSchema);
