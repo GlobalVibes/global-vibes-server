@@ -12,13 +12,13 @@ router.get("/posts", (req, res, next) =>{
 router.post("/posts", (req, res, next) => {
     const {image, descripiton} = req.body;
     Post.create({image, descripiton})
-        .then(hobby => res.json(hobby))
+        .then(post => res.json(post))
         .catch(e => console.log(e));
 })
 
 router.post("/posts/:id/update", (req, res, next) => {
     const {image, descripiton} = req.body;
-    Post.findByIdAndUpdate(req.params.id, {image, description})
+    Post.findByIdAndUpdate(req.params.id, {image, descripiton})
         .then(() => {
             res.redirect("/posts")
         })
@@ -30,4 +30,5 @@ router.get("/post/:id/delete", (req, res, next) =>{
      .then(() => res.redirect("/posts"))
      .catch(e => console.log(e))
 })
+
 module.exports = router;
