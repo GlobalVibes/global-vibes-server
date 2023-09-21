@@ -18,7 +18,7 @@ router.post("/posts", (req, res, next) => {
 });
 
 router.put("/posts/:id", (req, res, next) => {
-    const {image, descripiton} = req.body;
+    const {image, description} = req.body;
     Post.findByIdAndUpdate(req.params.id, {image, description}, {new: true})
         .then((updatedPost) => {
             res.json(updatedPost)
