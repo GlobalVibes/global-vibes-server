@@ -17,11 +17,11 @@ router.post("/posts", (req, res, next) => {
         .catch(e => console.log(e));
 });
 
-router.post("/posts/:id/update", (req, res, next) => {
+router.put("/posts/:id", (req, res, next) => {
     const {image, descripiton} = req.body;
-    Post.findByIdAndUpdate(req.params.id, {image, description})
-        .then(() => {
-            res.redirect("/posts")
+    Post.findByIdAndUpdate(req.params.id, {image, description}, {new: true})
+        .then((updatedPost) => {
+            res.json(updatedPost)
         })
         .catch(e => console.log(e));
 });
