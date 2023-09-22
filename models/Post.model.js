@@ -12,7 +12,7 @@ const PostSchema = new Schema({
     },
     hobbie: [{
         type: Schema.Types.ObjectId,
-        ref: "hobbie",
+        ref: "Hobbie",
         required: true,
     }],
 });

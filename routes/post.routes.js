@@ -4,6 +4,7 @@ const Post = require('../models/Post.model');
 const Hobbie = require("../models/Hobbie.model")
 
 router.get("/posts", (req, res, next) => {
+    console.log("hello >>><<<<<<<")
     Post.find()
         .populate("hobbie") 
         .then((allPosts) => res.json(allPosts))
