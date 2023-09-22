@@ -18,6 +18,6 @@ const userSchema = new Schema(
     }
 );
 
-const Hobbie = model("Hobbie", userSchema);
+const Hobby = model("Hobby", userSchema);
 
-module.exports = Hobbie;
+module.exports = Hobby;
