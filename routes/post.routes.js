@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../models/Post.model');
-const Hobbie = require("../models/Hobby.model")
+const Hobby = require("../models/Hobby.model")
 
 router.get("/posts", (req, res, next) => {
     Post.find()
-        .populate("hobbie") 
+        .populate("hobby") 
         .then((allPosts) => res.json(allPosts))
         .catch(e => console.log(e));
 });
