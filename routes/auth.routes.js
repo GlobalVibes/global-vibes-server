@@ -97,7 +97,7 @@ router.post("/login", (req, res, next) => {
 
       if (passwordCorrect) {
         // Deconstruct the user object to omit the password
-        const { _id, email, name, country, language } = foundUser;
+        const { _id, email, name, country, language} = foundUser;
 
         // Create an object that will be set as the token payload
         const payload = { _id, email, name, country, language };
