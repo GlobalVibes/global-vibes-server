@@ -11,8 +11,8 @@ router.get("/posts", (req, res, next) => {
 });
 
 router.post("/posts", (req, res, next) => {
-    const {image, descripiton} = req.body;
-    Post.create({image, descripiton})
+    const {image, description} = req.body;
+    Post.create({image, description})
         .then(hobby => res.json(hobby))
         .catch(e => console.log(e));
 });
