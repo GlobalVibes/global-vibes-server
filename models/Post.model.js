@@ -10,11 +10,15 @@ const PostSchema = new Schema({
         minlength: 5,
         maxlength: 200,
     },
-    hobbie: [{
+    hobby: [{
         type: Schema.Types.ObjectId,
-        ref: "Hobbie",
+        ref: "Hobby",
         required: true,
     }],
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 module.exports = model("Post", PostSchema);

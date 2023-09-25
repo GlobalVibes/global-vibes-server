@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Hobbie = require("../models/Hobbie.model");
+const Hobby = require("../models/Hobby.model");
 
 
 router.get("/hobbies", (req, res, next) => {
-    Hobbie.find()
+    Hobby.find()
         .then((allHobbies) => res.json(allHobbies))
         .catch(e => console.log(e));
 })
@@ -12,7 +12,7 @@ router.get("/hobbies", (req, res, next) => {
 router.post("/hobbies", (req, res, next) => {
     const { title, description } = req.body;
 
-    Hobbie.create({ title, description })
+    Hobby.create({ title, description })
         .then(response => res.json(response))
         .catch(err => res.json(err));
 });

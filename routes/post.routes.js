@@ -1,22 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../models/Post.model');
-const Hobbie = require("../models/Hobbie.model")
+const Hobby = require("../models/Hobby.model")
 
 router.get("/posts", (req, res, next) => {
-    console.log("hello >>><<<<<<<")
     Post.find()
-        .populate("hobbie") 
+        .populate("hobby") 
         .then((allPosts) => res.json(allPosts))
         .catch(e => console.log(e));
 });
 
-router.post("/posts", (req, res, next) => {
+router.post("/posts", (req, res, next) => { 
     const {image, description} = req.body;
     Post.create({image, description})
         .then(hobby => res.json(hobby))
         .catch(e => console.log(e));
 });
+
+router.get("/posts/:id", (req, res) => {
+    const {id} = req.params
+    Post.findById(id).then((post) => res.json(post)).catch(err => console.log(err))
+})
 
 router.put("/posts/:id", (req, res, next) => {
     const {image, description} = req.body;
