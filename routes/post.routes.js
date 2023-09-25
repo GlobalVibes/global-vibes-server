@@ -4,6 +4,7 @@ const Post = require('../models/Post.model');
 const Hobby = require("../models/Hobby.model")
 
 router.get("/posts", (req, res, next) => {
+   
     Post.find()
         .populate("hobby") 
         .then((allPosts) => res.json(allPosts))
@@ -33,7 +34,7 @@ router.put("/posts/:id", (req, res, next) => {
 
 router.delete("/posts/:id", (req, res, next) => { 
     Post.findByIdAndDelete(req.params.id)
-     .then(() => res.redirect("/posts"))
+     .then(() => res.status(200).json())
      .catch(e => console.log(e))
 })
 module.exports = router;
