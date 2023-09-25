@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 
@@ -17,10 +16,10 @@ const saltRounds = 10;
 
 // POST /auth/signup  - Creates a new user in the database
 router.post("/signup", (req, res, next) => {
-  const { email, password, name, profilePhoto, country, language } = req.body;
+  const { email, password, name, country, language, profilePhoto } = req.body;
   console.log('from signup', req.body)
   // Check if email or password or name are provided as empty strings
-  if (email === "" || password === "" || name === "" || country === "" || language === "") {
+  if (email === "" || password === "" || name === "" || country === "" || language === ""){
     res.status(400).json({ message: "Please check all fields again!" });
     return;
   }

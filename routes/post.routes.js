@@ -3,6 +3,7 @@ const router = express.Router();
 const Post = require('../models/Post.model');
 const Hobby = require("../models/Hobby.model")
 
+
 router.get("/posts", (req, res, next) => {
    
     Post.find()
