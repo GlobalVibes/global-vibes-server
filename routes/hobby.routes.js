@@ -10,9 +10,9 @@ router.get("/hobbies", (req, res, next) => {
 })
 
 router.post("/hobbies", (req, res, next) => {
-    const { title, description } = req.body;
+    const { title } = req.body;
 
-    Hobby.create({ title, description })
+    Hobby.create({ title })
         .then(response => res.json(response))
         .catch(err => res.json(err));
 });
