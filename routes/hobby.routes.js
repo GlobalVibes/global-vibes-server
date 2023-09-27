@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const Hobby = require("../models/Hobby.model");
+const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 
 router.get("/hobbies", (req, res, next) => {
@@ -9,7 +10,7 @@ router.get("/hobbies", (req, res, next) => {
         .catch(e => console.log(e));
 })
 
-router.post("/hobbies", (req, res, next) => {
+router.post("/hobbies", isAuthenticated, (req, res, next) => {
     const { title } = req.body;
 
     Hobby.create({ title })
