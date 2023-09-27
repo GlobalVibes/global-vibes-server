@@ -13,17 +13,18 @@ router.get("/posts", (req, res, next) => {
         .catch(e => console.log(e));
 });
 
-router.post("/posts", (req, res, next) => { 
+router.post("/posts", isAuthenticated, (req, res, next) => { 
     const {image, description, hobby} = req.body;
-
+    const author = req.payload._id;
     const newPost = {
         image, 
         description,
         hobby,
+        author
     }
 
     Post.create(newPost)
-        .then(hobby => res.json(hobby))
+        .then(post => res.json(post))
         .catch(e => console.log(e));
 });
 
