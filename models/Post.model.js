@@ -10,11 +10,11 @@ const PostSchema = new Schema({
         minlength: 1,
         maxlength: 200,
     },
-    hobby: [{
+    hobby: {
         type: Schema.Types.ObjectId,
         ref: "Hobby",
-        required: true,
-    }],
+        required: true
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: "User"
