@@ -31,7 +31,13 @@ router.post("/posts", isAuthenticated, (req, res, next) => {
 
     Post.create(newPost)
         .then(post => res.json(post))
-        .catch(e => console.log(e));
+        .catch(err => {
+          console.log("Error creating posts...", err);
+          res.status(500).json({
+              message: "Error creating posts",
+              error: err
+          });
+      });
 });
 
 router.get("/posts/:id", (req, res) => {
@@ -43,25 +49,42 @@ router.get("/posts/:id", (req, res) => {
 
 router.put("/posts/:id", isAuthenticated, (req, res, next) => {
     const { description, hobby, image } = req.body;
-    console.log("req body >>>>>>>>", req.body, "req params >>>>>", req.params)
     if (req.file) {
       console.log(req.file.path);
       Post.findByIdAndUpdate(req.params.id, { description, image: req.file.path, hobby },{ new: true })
         .then((updatedPost) => {
           res.json(updatedPost);
         })
-        .catch((e) => console.log(e));
+        .catch(err => {
+          console.log("Error updating post...", err);
+          res.status(500).json({
+              message: "Error updating post",
+              error: err
+          });
+      });
     } else {
       Post.findByIdAndUpdate(req.params.id, { description, hobby }, { new: true })
         .then((updatedPost) => {
           res.json(updatedPost);
         })
-        .catch(e => console.log(e));
-});
+        .catch(err => {
+          console.log("Error updating post...", err);
+          res.status(500).json({
+              message: "Error updating post",
+              error: err
+          });
+      });
+}});
 
 router.delete("/posts/:id", isAuthenticated, (req, res, next) => { 
     Post.findByIdAndDelete(req.params.id)
      .then(() => res.status(200).json())
-     .catch(e => console.log(e))
+     .catch(err => {
+      console.log("Error deleting post...", err);
+      res.status(500).json({
+          message: "Error deleting post",
+          error: err
+      });
+  });
 })
 module.exports = router;
