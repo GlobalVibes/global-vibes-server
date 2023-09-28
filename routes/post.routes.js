@@ -6,10 +6,17 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 const fileUploader = require("../config/cloudindary.config");
 
 router.get("/posts", (req, res, next) => {
-  Post.find()
-    .populate("hobby")
-    .then((allPosts) => res.json(allPosts))
-    .catch((e) => console.log(e));
+   
+    Post.find()
+        .populate("hobby") 
+        .then((allPosts) => res.json(allPosts))
+        .catch(err => {
+            console.log("Error geting list of posts...", err);
+            res.status(500).json({
+                message: "Error geting list of posts",
+                error: err
+            });
+        });
 });
 
 router.post("/posts", isAuthenticated, (req, res, next) => {
@@ -22,9 +29,9 @@ router.post("/posts", isAuthenticated, (req, res, next) => {
     author,
   };
 
-  Post.create(newPost)
-    .then((post) => res.json(post))
-    .catch((e) => console.log(e));
+    Post.create(newPost)
+        .then(post => res.json(post))
+        .catch(e => console.log(e));
 });
 
 router.get("/posts/:id", (req, res) => {
@@ -49,14 +56,12 @@ router.put("/posts/:id", isAuthenticated, (req, res, next) => {
         .then((updatedPost) => {
           res.json(updatedPost);
         })
-        .catch((e) => console.log(e));
-    }
-  }
-);
-
-router.delete("/posts/:id", isAuthenticated, (req, res, next) => {
-  Post.findByIdAndDelete(req.params.id)
-    .then(() => res.status(200).json())
-    .catch((e) => console.log(e));
+        .catch(e => console.log(e));
 });
+
+router.delete("/posts/:id", isAuthenticated, (req, res, next) => { 
+    Post.findByIdAndDelete(req.params.id)
+     .then(() => res.status(200).json())
+     .catch(e => console.log(e))
+})
 module.exports = router;
